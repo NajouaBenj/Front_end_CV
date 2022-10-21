@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthentificationService} from "./Services/authentification.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'CvFront';
+
+  constructor(public authentificationService:AuthentificationService) {
+  }
 }

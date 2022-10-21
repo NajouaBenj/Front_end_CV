@@ -1,0 +1,343 @@
+<br>
+<div class="container">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-primary">
+      <h1 class="header-panel"> New Cv</h1>
+      <br>
+      <br>
+      <div class="panel-body">
+        <form [formGroup]="cvForm" (ngSubmit)="onSubmit()">
+          <div>
+            <div class="form-group">
+              <label class="control-label">Prenom : </label>
+              <input class="form-control" ngModel="" type="text" name="prenom" formControlName="prenom"/>
+              <small *ngIf="!cvForm?.get('prenom')?.valid && cvForm?.get('prenom')?.touched" class="text-danger">
+                Prenom is required !
+              </small>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Nom : </label>
+              <input class="form-control" ngModel="" type="text" name="nom" formControlName="nom"/>
+              <small *ngIf="!cvForm?.get('nom')?.valid && cvForm?.get('nom')?.touched" class="text-danger">
+              Nom is required !
+            </small>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Date de naissance : </label>
+              <input class="form-control" ngModel="" type="text" name="dateNaissance" formControlName="dateNaissance"/>
+              <small *ngIf="!cvForm?.get('dateNaissance')?.valid && cvForm?.get('dateNaissance')?.touched" class="text-danger">
+                Date de Naissance is required !
+              </small>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Email : </label>
+              <input class="form-control" ngModel="" type="text" name="email" formControlName="email"/>
+              <small *ngIf="!cvForm?.get('email')?.valid && cvForm?.get('email')?.touched" class="text-danger">
+                Email is not valid !
+              </small>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Telephone : </label>
+              <input class="form-control" ngModel="" type="text" name="telephone" formControlName="telephone"/>
+              <small *ngIf="!cvForm?.get('telephone')?.valid && cvForm?.get('telephone')?.touched" class="text-danger">
+                Telephone is required !
+              </small>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Adresse : </label>
+              <input class="form-control" ngModel="" type="text" name="adresse" formControlName="adresse"/>
+              <small *ngIf="!cvForm?.get('adresse')?.valid && cvForm?.get('adresse')?.touched" class="text-danger">
+                Adresse is required !
+              </small>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Description : </label>
+              <input class="form-control" ngModel="" type="text" name="description" formControlName="description"/>
+              <!--display error message if name is not valid-->
+              <small *ngIf="!cvForm?.get('description')?.valid && cvForm?.get('description')?.touched" class="text-danger">
+                Description is required !
+              </small>
+            </div>
+
+            <div formArrayName="experiences" class="form-group">
+              <h2>Experiences</h2>
+
+              <section [formGroupName]="i" *ngFor="let exp of expControls.controls; let i=index">
+                <div class="form-group">
+                  <label class="control-label">title</label>
+                  <input class="form-control" type="text" name="title" formControlName="title">
+                  <small *ngIf="!exp.get('title')?.valid && exp.get('title')?.touched" class="text-danger">
+                    Title is required !
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">company</label>
+                  <input class="form-control" type="text" name="company" formControlName="company">
+                  <small *ngIf="!exp.get('company')?.valid && exp.get('company')?.touched" class="text-danger">
+                    Company is required
+                  </small>
+                </div>
+
+
+                <div class="form-group">
+                  <label class="control-label">location</label>
+                  <input class="form-control" type="text" name="location" formControlName="location">
+                  <small *ngIf="!exp.get('location')?.valid && exp.get('location')?.touched" class="text-danger">
+                    Location is required !
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">startDate</label>
+                  <input class="form-control" type="text" name="startDate" formControlName="startDate">
+                  <small *ngIf="!exp.get('startDate')?.valid && exp.get('startDate')?.touched" class="text-danger">
+                    StartDate is required !
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">endDate</label>
+                  <input class="form-control" type="text" name="endDate" formControlName="endDate">
+                  <small *ngIf="!exp.get('endDate')?.valid && exp.get('endDate')?.touched" class="text-danger">
+                    EndDate is required !
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">description</label>
+                  <input class="form-control" type="text" name="description" formControlName="description">
+                  <small *ngIf="!exp.get('description')?.valid && exp.get('description')?.touched" class="text-danger">
+                    Description is required !
+                  </small>
+                </div>
+                <!-- Allow generated input field to be removed -->
+                <div>
+                  <button type="button" class="bg-danger"
+                          *ngIf="expControls.length > 0"
+                          (click)="removeExperience(i)">
+                    Remove
+                  </button>
+                </div>
+                <br>
+              </section>
+            </div>
+            <!-- Allow new exp to be generated/added -->
+            <button type="button" class="bg-primary"
+                    (click)="addNewExperience()">
+              + Ajouter une exeperience
+            </button>
+
+            <!--educations -->
+            <div formArrayName="educations" class="form-group">
+              <h2>Educations</h2>
+
+              <section [formGroupName]="j" *ngFor="let edu of eduControls.controls; let j=index">
+                <div class="form-group">
+                  <label class="control-label">ecole</label>
+                  <input class="form-control" type="text" name="ecole" formControlName="ecole">
+                  <small *ngIf="!edu.get('ecole')?.valid && edu.get('ecole')?.touched" class="text-danger">
+                    Ecole is required !
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">diplome</label>
+                  <input class="form-control" type="text" name="diplome" formControlName="diplome">
+                  <small *ngIf="!edu.get('diplome')?.valid && edu.get('diplome')?.touched" class="text-danger">
+                    Diplome is required !
+                  </small>
+                </div>
+
+
+                <div class="form-group">
+                  <label class="control-label">location</label>
+                  <input class="form-control" type="text" name="locationE" formControlName="locationE">
+                  <small *ngIf="!edu.get('locationE')?.valid && edu.get('locationE')?.touched" class="text-danger">
+                    Location is required !
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">Date debut</label>
+                  <input class="form-control" type="text" name="startDate" formControlName="startDateE">
+                  <small *ngIf="!edu.get('startDateE')?.valid && edu.get('startDateE')?.touched" class="text-danger">
+                    StartDate is required !
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">Date fin</label>
+                  <input class="form-control" type="text" name="endDateE" formControlName="endDateE">
+                  <small *ngIf="!edu.get('endDateE')?.valid && edu.get('endDateE')?.touched">
+                    endDate is required
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">description</label>
+                  <input class="form-control" type="text" name="descriptionE" formControlName="descriptionE">
+                  <small *ngIf="!edu.get('descriptionE')?.valid && edu.get('descriptionE')?.touched">
+                    description is required
+                  </small>
+                </div>
+
+                <!-- Allow generated input field to be removed -->
+                <div>
+                  <button type="button" class="bg-danger"
+                          *ngIf="eduControls.length> 0"
+                          (click)="removeEdu(j)">
+                    Remove
+                  </button>
+                </div>
+                <br>
+              </section>
+            </div>
+
+              <button type="button" class="bg-primary"
+                      (click)="addNewEdu()">
+                + Ajouter une formation
+              </button>
+
+              <!--Projets -->
+
+              <div formArrayName="projets" class="form-group">
+                <h2>Projets</h2>
+
+                <section [formGroupName]="l" *ngFor="let proj of projControls.controls; let l=index">
+                  <div class="form-group">
+                    <label class="control-label">title</label>
+                    <input class="form-control" type="text" name="titleP" formControlName="titleP">
+                    <small *ngIf="!proj.get('titleP')?.valid && proj.get('titleP')?.touched">
+                      title is required
+                    </small>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="control-label">Date debut</label>
+                    <input class="form-control" type="text" name="startDateP" formControlName="startDateP">
+                    <small *ngIf="!proj.get('startDateP')?.valid && proj.get('startDateP')?.touched">
+                      startDate is required
+                    </small>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label">Date fin</label>
+                    <input class="form-control" type="text" name="endDateP" formControlName="endDateP">
+                    <small *ngIf="!proj.get('endDateP')?.valid && proj.get('endDateP')?.touched">
+                      endDate is required
+                    </small>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label">description</label>
+                    <input class="form-control" type="text" name="descriptionP" formControlName="descriptionP">
+                    <small *ngIf="!proj.get('descriptionP')?.valid && proj.get('descriptionP')?.touched">
+                      description is required
+                    </small>
+                  </div>
+
+                  <div>
+                    <button type="button" class="bg-danger"
+                            *ngIf="projControls.length> 0"
+                            (click)="removeProj(l)">
+                      Remove
+                    </button>
+                  </div>
+                  <br>
+                </section>
+              </div>
+
+              <button  type="button" class="bg-primary"
+                      (click)="addNewProj()">
+                + Ajouter un projet
+              </button>
+
+
+              <!--Hobbies -->
+
+              <div formArrayName="hobbies" class="form-group">
+                <h2>Hobbies</h2>
+
+                <section [formGroupName]="z" *ngFor="let hob of hobyControls.controls; let z=index">
+                  <div class="form-group">
+                    <label class="control-label">hobby</label>
+                    <input class="form-control" type="text" name="hobby" formControlName="hobby">
+                    <small *ngIf="!hob.get('hobby')?.valid && hob.get('hobby')?.touched">
+                      hobby is required
+                    </small>
+                  </div>
+
+                  <div>
+                    <button type="button" class="bg-danger"
+                            *ngIf="hobyControls.length> 0"
+                            (click)="removeHobby(z)">
+                      Remove
+                    </button>
+                  </div>
+                  <br>
+                </section>
+              </div>
+
+              <button type="button" class="bg-primary"
+                      (click)="addNewHobby()">
+                + Ajouter un hobby
+              </button>
+
+              <!--Reseau -->
+
+              <div formArrayName="reseauxSx" class="form-group">
+                <h2>Réseaux Sociaux</h2>
+
+                <section [formGroupName]="m" *ngFor="let res of resControls.controls; let m=index">
+                  <div class="form-group">
+                    <label class="control-label">etiquette</label>
+                    <input class="form-control" type="text" name="hobby" formControlName="etiquette">
+                    <small *ngIf="!res.get('etiquette')?.valid && res.get('etiquette')?.touched">
+                      etiquette is required
+                    </small>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label">URL</label>
+                    <input class="form-control" type="text" name="url" formControlName="url">
+                    <small *ngIf="!res.get('url')?.valid && res.get('url')?.touched">
+                      url is required
+                    </small>
+                  </div>
+
+                  <div>
+                    <button type="button" class="bg-danger"
+                            *ngIf="resControls.length> 0"
+                            (click)="removeReseau(m)">
+                      Remove
+                    </button>
+                  </div>
+                  <br>
+                </section>
+              </div>
+
+              <button type="button" class="bg-primary"
+                      (click)="addNewReseau()">
+                + Ajouter un url
+              </button>
+            </div>
+          <br>
+          <br>
+
+          <button type="submit" class="btn btn-success" [disabled]="!cvForm.valid"> Save</button>
+          </form>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+
