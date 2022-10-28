@@ -1,1 +1,19 @@
-<p>list-cv works!</p>
+<table class="table table-success table-striped">
+  <thead>
+    <h1>Liste Cvs</h1>
+  </thead>
+  <tbody>
+    <tr class="table-active" *ngFor="let cv of cvvs">
+      <td>{{cv.prenom}}</td>
+      <td>{{cv.nom}}</td>
+      <button class="btn btn-success " (click)="getcv(cv.id)"> <span class="glyphicon glyphicon-search"></span></button>
+      <button class="btn btn-primary " (click)="editButtonClick(cv.id)"><span
+        class="glyphicon glyphicon-pencil"></span></button>
+      <button mat-raised-button color="warn" class="btn btn-danger " (click)="delete(cv.id)"> <span
+          class="glyphicon glyphicon-trash"></span></button>
+    </tr>
+    <br><br>
+    <button class="m-3 btn btn-sm btn-danger pull-left" (click)="removeAllCvs()">
+        Remove All</button>
+  </tbody>
+</table>

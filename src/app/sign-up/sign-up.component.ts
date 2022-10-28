@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthentificationService} from "../Services/authentification.service";
 import {Router} from "@angular/router";
 import {User} from "../Classes/user";
+import { FormsModule }   from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,7 +18,10 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  annuler(){
+      this.router.navigateByUrl('/signin');
 
+  }
   save(user:any){
     this.authService.signUp(user).subscribe(resp=>{
       this.router.navigateByUrl('/signin');

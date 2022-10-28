@@ -1,0 +1,206 @@
+          <form [formGroup]="cvForm" (ngSubmit)="onSubmit()">
+           
+            <div>
+              <div class="form-group">
+                <label class="control-label">Prenom : </label>
+                <input class="form-control" ngModel="" type="text" name="prenom" formControlName="prenom" />
+              </div>
+  
+              <div class="form-group">
+                <label class="control-label">Nom : </label>
+                <input class="form-control" ngModel="" type="text" name="nom" formControlName="nom" />
+              </div>
+  
+              <div class="form-group">
+                <label class="control-label">Date de naissance : </label>
+                <input class="form-control" ngModel="" type="date" name="dateNaissance" formControlName="dateNaissance" />
+              </div>
+  
+              <div class="form-group">
+                <label class="control-label">Email : </label>
+                <input class="form-control" ngModel="" type="text" name="email" id="email" formControlName="email" />
+              </div>
+  
+              <div class="form-group">
+                <label class="control-label">Telephone : </label>
+                <input class="form-control" ngModel="" type="text" name="telephone" formControlName="telephone" />
+              </div>
+  
+              <div class="form-group">
+                <label class="control-label">Adresse : </label>
+                <input class="form-control" ngModel="" type="text" name="adresse" formControlName="adresse" />
+              </div>
+  
+              <div class="form-group">
+                <label class="control-label">Description : </label>
+                <textarea class="form-control" ngModel="" type="text" name="description" formControlName="description" ></textarea>
+                
+              </div>
+  
+  
+  
+              <!--Reseau -->
+  
+              <div formArrayName="reseauxSx" class="form-group">
+                <h2>Réseaux Sociaux</h2>
+  
+                <div class="well">
+                  <section [formGroupName]="m" *ngFor="let res of resControls.controls; let m=index">
+                    <div class="form-group">
+                      <label class="control-label">etiquette</label>
+                      <input class="form-control" type="text" name="hobby" formControlName="etiquette">
+                    </div>
+  
+                    <div class="form-group">
+                      <label class="control-label">URL</label>
+                      <input class="form-control" type="text" name="url" formControlName="url">
+                    </div>
+                    <br>
+                  </section>
+                </div>
+              </div>
+              <!--Exp -->
+  
+              <div formArrayName="experiences" class="form-group">
+                <h2>Experiences</h2>
+  
+                <div class="well">
+                  <section [formGroupName]="i" *ngFor="let exp of expControls.controls; let i=index">
+                    <hr *ngIf="i>0">
+                    <div class="form-group">
+                      <label class="control-label">title</label>
+                      <input class="form-control" type="text" name="title" formControlName="title">
+                    </div>
+  
+                    <div class="form-group">
+                      <label class="control-label">company</label>
+                      <input class="form-control" type="text" name="company" formControlName="company">
+                    </div>
+  
+  
+                    <div class="form-group">
+                      <label class="control-label">location</label>
+                      <input class="form-control" type="text" name="location" formControlName="location">
+                    </div>
+  
+                    <div class="form-group">
+                      <label class="control-label">startDate</label>
+                      <input class="form-control" type="date" name="startDate" formControlName="startDate">
+                    </div>
+  
+                    <div class="form-group">
+                      <label class="control-label">endDate</label>
+                      <input class="form-control" type="date" name="endDate" formControlName="endDate">
+                    </div>
+  
+                    <div class="form-group">
+                      <label class="control-label">description</label>
+                      <textarea class="form-control" type="text" name="description" formControlName="description"></textarea>
+                    </div>
+                    <br>
+                  </section>
+                </div>
+              </div>
+  
+  
+              <!--educations -->
+              <div formArrayName="educations" class="form-group">
+                <h2>Educations</h2>
+  
+                <div class="well">
+                  <section [formGroupName]="j" *ngFor="let edu of eduControls.controls; let j=index">
+                    <div class="form-group">
+                      <label class="control-label">ecole</label>
+                      <input class="form-control" type="text" name="ecole" formControlName="ecole">
+                    </div>
+  
+                    <div class="form-group">
+                      <label class="control-label">diplome</label>
+                      <input class="form-control" type="text" name="diplome" formControlName="diplome">
+                    </div>
+  
+  
+                    <div class="form-group">
+                      <label class="control-label">location</label>
+                      <input class="form-control" type="text" name="locationE" formControlName="locationE">
+                    </div>
+  
+                    <div class="form-group">
+                      <label class="control-label">Date debut</label>
+                      <input class="form-control" type="date" name="startDate" formControlName="startDateE">
+                    </div>
+  
+                    <div class="form-group">
+                      <label class="control-label">Date fin</label>
+                      <input class="form-control" type="date" name="endDateE" formControlName="endDateE">
+                    </div>
+  
+                    <div class="form-group">
+                      <label class="control-label">description</label>
+                      <textarea class="form-control" type="text" name="descriptionE" formControlName="descriptionE"></textarea>
+                    </div>
+
+                    <br>
+                  </section>
+                </div>
+              </div>
+  
+  
+              <!--Projets -->
+  
+              <div formArrayName="projets" class="form-group">
+                <h2>Projets</h2>
+  
+                <div class="well">
+  
+                  <section [formGroupName]="l" *ngFor="let proj of projControls.controls; let l=index">
+                    <div class="form-group">
+                      <label class="control-label">title</label>
+                      <input class="form-control" type="text" name="titleP" formControlName="titleP">
+                    </div>
+  
+  
+                    <div class="form-group">
+                      <label class="control-label">Date debut</label>
+                      <input class="form-control" type="date" name="startDateP" formControlName="startDateP">
+                    </div>
+  
+                    <div class="form-group">
+                      <label class="control-label">Date fin</label>
+                      <input class="form-control" type="date" name="endDateP" formControlName="endDateP">
+                    </div>
+  
+                    <div class="form-group">
+                      <label class="control-label">description</label>
+                      <textarea class="form-control" type="text" name="descriptionP" formControlName="descriptionP"></textarea>
+                    </div>
+
+                    <br>
+                  </section>
+                </div>
+              </div>
+  
+  
+  
+              <!--Hobbies -->
+  
+              <div formArrayName="hobbies" class="form-group">
+                <h2>Hobbies</h2>
+  
+                <div class="well">
+                  <section [formGroupName]="z" *ngFor="let hob of hobyControls.controls; let z=index">
+                    <div class="form-group">
+                      <label class="control-label">hobby</label>
+                      <input class="form-control" type="text" name="hobby" formControlName="hobby">
+                    </div>
+                    <br>
+                  </section>
+                </div>
+              </div>
+            </div>
+            <br><br>
+              <div class="panel-footer">
+                <button class="btn btn-danger pull-right" class=pull-right type="button" (click)="goToCvsList()">Retour</button>
+              </div>
+          </form>
+

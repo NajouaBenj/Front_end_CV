@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {CvService} from "../Services/cv.service";
-import {Cv} from "../Classes/cv";
-import {Router} from "@angular/router";
+import { CvService } from "../Services/cv.service";
+import { Cv } from "../Classes/cv";
+import { Router } from "@angular/router";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list-cv',
@@ -10,25 +11,58 @@ import {Router} from "@angular/router";
 })
 export class ListCvComponent implements OnInit {
 
-  cvList:any;
-  cv:Cv=new Cv();
+  cv: Cv;
+  cvs: Cv;
+  prenom = '';
+  cvvs?: Cv[];
+  currentTutorial: Cv = {};
+  currentIndex = -1;
 
-  constructor(private cvService:CvService,private router:Router) { }
+  constructor(private cvService: CvService, private router: Router) { }
 
   ngOnInit(): void {
+   this.retrieveCvs();
+  }
+  retrieveCvs(): void {
+    this.cvService.getAll()
+      .subscribe({
+        next: (data) => {
+          this.cvvs = data;
+          console.log(data);
+        },
+        error: (e) => console.error(e)
+      });
+  }
+  
+  getcv(idc: number) {
+    this.router.navigate(['/get', idc]);
   }
 
-  private getCvs(){
-    this.cvService.getCvs().subscribe(data=>{
-      this.cvList=data;
-    })
+
+  delete(id: number) {
+    this.cvService.delete(id)
+      .subscribe({
+        next: (res) => {
+          alert("Cv supprimé");
+          this.retrieveCvs();
+        },
+        error: () => {
+          alert("Cv non supprimé")
+        }
+      })
   }
 
-  deleteCv(idc:number){
-    this.cvService.deleteCv(idc).subscribe(data=>{
-      console.log(data)
-      this.getCvs();
-    })
+  removeAllCvs(): void {
+    this.cvService.deleteAll()
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (e) => console.error(e)
+      });
   }
-
+  editButtonClick(cvId: number) {
+    this.router.navigate(['/edit', cvId]);
+  }
+  
 }

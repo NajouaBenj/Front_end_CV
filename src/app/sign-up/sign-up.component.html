@@ -2,7 +2,7 @@
 <div class="container">
   <div class="col-md-6 col-md-offset-3">
     <div class="panel panel-primary">
-      <div class="header-panel"> Registration</div>
+      <div class="header-panel"> <h3>Registration</h3></div>
       <br>
       <br>
       <div class="panel-body">
@@ -53,7 +53,9 @@
           </div>
 
           <br>
-          <button type="submit" class="btn btn-success" [disabled]="!f.valid"> Save</button>
+          <button type="submit" class="btn btn-success pull-left" [disabled]="!f.valid"> Enregistrer</button>
+          <button type="button" class="btn btn-danger pull-right" (click)="annuler()"> Annuler</button>
+
         </form>
       </div>
     </div>

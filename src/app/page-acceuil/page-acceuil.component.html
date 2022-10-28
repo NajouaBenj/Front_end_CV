@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <ul class="nav navbar-nav">
+        <div class="card" style="width: 36rem;">
+            <div class="card-body">
+                <h2 class="card-title">Section publique </h2>
+            </div>
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-info" type="button" (click)="goToCvsList()">Acceder</button>
+        </div>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <div class="card" style="width: 36rem;">
+            <div class="card-body">
+                <h2 class="card-title">Section Administration </h2>
+            </div>
+        </div>
+        <button class="btn btn-info" type="button" (click)="goToadd()">Acceder</button>
+    </ul>
+</div>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

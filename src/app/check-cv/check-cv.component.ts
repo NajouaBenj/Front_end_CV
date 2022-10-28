@@ -3,18 +3,18 @@ import { Cv } from "../Classes/cv";
 import { CvService } from "../Services/cv.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ReseauxSociaux } from '../Classes/reseaux-sociaux';
-import { Experience } from '../Classes/experience';
-import { Education } from '../Classes/education';
 import { Projects } from '../Classes/projects';
+import { Education } from '../Classes/education';
+import { Experience } from '../Classes/experience';
+import { ReseauxSociaux } from '../Classes/reseaux-sociaux';
 import { Hobby } from '../Classes/hobby';
 
 @Component({
-  selector: 'app-add-cv',
-  templateUrl: './add-cv.component.html',
-  styleUrls: ['./add-cv.component.css']
+  selector: 'app-check-cv',
+  templateUrl: './check-cv.component.html',
+  styleUrls: ['./check-cv.component.css']
 })
-export class AddCvComponent {
+export class CheckCvComponent implements OnInit {
 
   public expControls;
   public eduControls;
@@ -25,8 +25,8 @@ export class AddCvComponent {
   cv: Cv;
   public cvForm: FormGroup;
 
-  constructor(private cvService: CvService, private router: Router, private fb: FormBuilder, private route: ActivatedRoute) {}
-   ngOnInit(){
+  constructor(private cvService: CvService, private router: Router, private fb: FormBuilder, private route: ActivatedRoute) { }
+  ngOnInit() {
     this.cv = new Cv();
     this.cvForm = this.fb.group({
       prenom: ['', [Validators.required, Validators.maxLength(80)]],
@@ -175,68 +175,68 @@ export class AddCvComponent {
     return formArray;
   }
 
-  
- /* onSubmit() {
-    console.log(this.cvForm.value);
-    //this.cv.nom = this.cvForm.value['nom']
-    this.saveCv(this.cvForm.value);
-  }
 
-  saveCv(cv: Cv) {
-    this.cvService.create(cv).subscribe(
-      data => {
-        console.log(this.cv)
-        this.goToCvsList();
-      },
-      error => console.log(error)
-    );
-  }
-*/
+  /* onSubmit() {
+     console.log(this.cvForm.value);
+     //this.cv.nom = this.cvForm.value['nom']
+     this.saveCv(this.cvForm.value);
+   }
+ 
+   saveCv(cv: Cv) {
+     this.cvService.create(cv).subscribe(
+       data => {
+         console.log(this.cv)
+         this.goToCvsList();
+       },
+       error => console.log(error)
+     );
+   }
+ */
 
-//essai
-  onSubmit(): void{
+  //essai
+  onSubmit(): void {
     console.log(this.cvForm.value);
     this.mapFormValuesToCvModel();
     if (this.cv.id) {
-      this.cvService.update(this.cv.id,this.cvForm.value).subscribe(
+      this.cvService.update(this.cv.id, this.cvForm.value).subscribe(
         () => this.router.navigate(['list-cv']),
         (err: any) => console.log(err)
       );
-    } else{
-    this.saveCv(this.cvForm.value);
+    } else {
+      this.saveCv(this.cvForm.value);
     }
   }
 
   saveCv(cv: Cv) {
-     this.cvService.create(cv)
-    .subscribe({
-      next: (res) => {
-        console.log(res);
-        this.goToCvsList();
-      },
-      error: (e) => console.error(e)
-    });
+    this.cvService.create(cv)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.goToCvsList();
+        },
+        error: (e) => console.error(e)
+      });
   }
 
   goToCvsList() {
     this.router.navigate(["list-cv"]);
   }
-/////////////////////////////////
-mapFormValuesToCvModel() {
-  this.cv.prenom = this.cvForm.value.firstName;
-  this.cv.nom = this.cvForm.value.lastName;
-  this.cv.dateNaissance = this.cvForm.value.dateNaissance;
-  this.cv.adresse = this.cvForm.value.adresse;
-  this.cv.email = this.cvForm.value.email;
-  this.cv.telephone = this.cvForm.value.phone;
-  this.cv.description = this.cvForm.value.description;
-  this.cv.reseauxSociaux = this.cvForm.value.reseauxSociaux;
-  this.cv.experiences = this.cvForm.value.experiences;
-  this.cv.educations = this.cvForm.value.educations;
-  this.cv.projets = this.cvForm.value.projets;
-  this.cv.hobbies = this.cvForm.value.hobbies;
+  /////////////////////////////////
+  mapFormValuesToCvModel() {
+    this.cv.prenom = this.cvForm.value.firstName;
+    this.cv.nom = this.cvForm.value.lastName;
+    this.cv.dateNaissance = this.cvForm.value.dateNaissance;
+    this.cv.adresse = this.cvForm.value.adresse;
+    this.cv.email = this.cvForm.value.email;
+    this.cv.telephone = this.cvForm.value.phone;
+    this.cv.description = this.cvForm.value.description;
+    this.cv.reseauxSociaux = this.cvForm.value.reseauxSociaux;
+    this.cv.experiences = this.cvForm.value.experiences;
+    this.cv.educations = this.cvForm.value.educations;
+    this.cv.projets = this.cvForm.value.projets;
+    this.cv.hobbies = this.cvForm.value.hobbies;
 
-}
+  }
 
 
 

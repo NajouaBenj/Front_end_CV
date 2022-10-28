@@ -1,0 +1,13 @@
+<table class="table table-success table-striped">
+    <thead>
+      <h1>Liste Cvs</h1>
+    </thead>
+    <tbody>
+      <tr class="table-active" *ngFor="let cv of cvvs">
+        <td>{{cv.prenom}}</td>
+        <td>{{cv.nom}}</td>
+        <button class="btn btn-success " (click)="getcv(cv.id)"> <span class="glyphicon glyphicon-search"></span></button>
+        <a href="mailto:{{cv.email}}"> Send email </a>
+      </tr>
+    </tbody>
+  </table>

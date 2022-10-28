@@ -19,7 +19,7 @@ export class SignInComponent implements OnInit {
   onSignIn(user:any){
     this.authService.signIn(user).subscribe(resp=>{
       if(resp.body) {
-        this.router.navigateByUrl('/listcv');
+        this.router.navigateByUrl('/acceuil');
       }
       else {
         this.router.navigateByUrl('/signin');

@@ -1,34 +1,34 @@
-import {Experience} from "./experience";
-import {Education} from "./education";
-import {Projects} from "./projects";
-import {ReseauxSociaux} from "./reseaux-sociaux";
-import {Hobby} from "./hobby";
+import { Experience } from "./experience";
+import { Education } from "./education";
+import { Projects } from "./projects";
+import { ReseauxSociaux } from "./reseaux-sociaux";
+import { Hobby } from "./hobby";
 
-export class Cv{
+export class Cv {
   // @ts-ignore
-  idc : number;
+  id?: number;
   // @ts-ignore
-  prenom:string;
+  prenom?: string;
   // @ts-ignore
-  nom: string;
+  nom?: string;
   // @ts-ignore
-  dateNaissance: string;
+  dateNaissance?: string;
   // @ts-ignore
-  email: string;
+  email?: string;
   // @ts-ignore
-  telephone: string;
+  telephone?: string;
   // @ts-ignore
-  adresse: string;
+  adresse?: string;
   // @ts-ignore
-  description: string;
+  description?: string;
   // @ts-ignore
-  experiences: Experience[];
+  experiences?: Experience[];
   // @ts-ignore
-  educations: Education[];
+  educations?: Education[];
   // @ts-ignore
-  hobbies: Hobby[];
+  hobbies?: Hobby[];
   // @ts-ignore
-  projets: Projects[];
+  projets?: Projects[];
   // @ts-ignore
-  reseauxSociaux: ReseauxSociaux[];
+  reseauxSociaux?: ReseauxSociaux[];
 }
